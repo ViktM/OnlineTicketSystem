@@ -2,6 +2,9 @@ package com.company.ots;
 
 import java.util.Scanner;
 
+import static com.company.ots.Menu.mainMenu;
+import static com.company.ots.Menu.myAccount;
+
 class Customer {
     private String firstName;
     private String lastName;
@@ -17,7 +20,7 @@ class Customer {
         this.address = address;
     }
 
-    private String getFirstName() {
+    String getFirstName() {
         return firstName;
     }
     private String getLastName() {
@@ -76,52 +79,7 @@ class Customer {
         mainMenu(customer);
     }
 
-    private void mainMenu(Customer customer) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please choose from the following options");
-        System.out.println("1) See my account");
-        System.out.println("2) See our current shows");
-        System.out.println("3) Log out of OTS");
-
-        int mainMenuChoice = scanner.nextInt();
-
-        switch (mainMenuChoice) {
-            case 1:
-                myAccount(customer);
-                break;
-            case 2:
-                System.out.println("Upcoming shows");
-                break;
-            case 3:
-                System.out.println("Thanks for visiting, see You again soon!");
-                break;
-        }
-    }
-
-    private void myAccount(Customer customer) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(customer.getFirstName() + "'s account");
-        System.out.println("Please choose from the following options");
-        System.out.println("1) View my details");
-        System.out.println("2) Edit my details");
-        System.out.println("3) Back to main menu");
-
-        int myAccountChoice = scanner.nextInt();
-
-        switch (myAccountChoice) {
-            case 1:
-                viewDetails(customer);
-                break;
-            case 2:
-                editDetails(customer);
-                break;
-            case 3:
-                mainMenu(customer);
-                break;
-        }
-    }
-
-    private void editDetails(Customer customer) {
+    void editDetails(Customer customer) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Edit details");
         System.out.println("Please choose from the following options");
@@ -247,7 +205,7 @@ class Customer {
     }
 
 
-    private void viewDetails(Customer customer) {
+    void viewDetails(Customer customer) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("My details");
         System.out.println("First Name: " + customer.getFirstName());
