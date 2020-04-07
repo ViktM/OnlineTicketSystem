@@ -74,10 +74,10 @@ class Menu {
         } else {
             mainMenu(customer);
         }
-        showMenu(customer, shows);
+        showMenu(customer);
     }
 
-    private static void showMenu(Customer customer, List<Show> shows) {
+    private static void showMenu(Customer customer) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please choose from the following options");
         System.out.println("1) See seating plan for this show");
