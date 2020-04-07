@@ -27,7 +27,7 @@ class Show {
         return date;
     }
 
-    private static List<Show> shows(){
+    private static List<Show> listOfShows() {
         Show show1 = new Show("1) Harry Potter and the Cursed Child", "It turns out Harry Potter, now a grown man with a wife and kids, sucks at parenting", new Date(2020, Calendar.JUNE, 5));
         Show show2 = new Show("2) Aladdin", "Love is in the air when the paths of a beautiful princess and a charming thief cross", new Date(2020, Calendar.JUNE, 6));
         Show show3 = new Show("3) Alice in Wonderland", "A little girl gets lost in a wonderland", new Date(2020, Calendar.JUNE, 7));
@@ -40,14 +40,14 @@ class Show {
         return shows;
     }
 
-    static void listShows(Customer customer){
-        List<Show> shows = shows();
+    static void listsEachShows(Customer customer) {
+        List<Show> shows = listOfShows();
 
         int listSize = 0;
         while (listSize < shows.size()){
             System.out.println(shows.get(listSize).getTitle());
             listSize++;
         }
-        listShowMenu(customer, shows());
+        listShowMenu(customer, listOfShows());
     }
 }

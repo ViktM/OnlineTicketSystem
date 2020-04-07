@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import static com.company.ots.Customer.register;
 import static com.company.ots.SeatingPlan.intialiseSeatingPlan;
-import static com.company.ots.Show.listShows;
+import static com.company.ots.Show.listsEachShows;
 
 class Menu {
     static void welcomeMenu() {
@@ -29,7 +29,7 @@ class Menu {
                 myAccount(customer);
                 break;
             case 2:
-                listShows(customer);
+                listsEachShows(customer);
                 break;
             case 3:
                 System.out.println("Thanks for visiting, see You again soon!");
@@ -92,7 +92,7 @@ class Menu {
                 //TODO continue from here
                 break;
             case 2:
-                listShows(customer);
+                listsEachShows(customer);
                 break;
             case 3:
                 mainMenu(customer);

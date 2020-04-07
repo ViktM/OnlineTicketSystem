@@ -79,7 +79,7 @@ class Customer {
         mainMenu(customer);
     }
 
-    void editDetails(Customer customer) {
+    void editDetails(Customer customer) { //TODO move to menu
         Scanner scanner = new Scanner(System.in);
         System.out.println("Edit details");
         System.out.println("Please choose from the following options");
