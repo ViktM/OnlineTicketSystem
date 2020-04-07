@@ -2,7 +2,7 @@ package com.company.ots;
 
 import java.util.Scanner;
 
-public class SeatingPlan {
+class SeatingPlan {
     private static int column;
 
     private static void purchaseTickets(Scanner scanner, String[][] seatingPlan) {
@@ -51,7 +51,7 @@ public class SeatingPlan {
         printBoard(seatingPlan);
     }
 
-    private static String[][] intialiseSeatingPlan() {
+    static String[][] intialiseSeatingPlan() {
         String[][] seatingPlan = {
                 {"A", "B", "C", "D", "E", "F", "G"},
                 {"A", "B", "C", "D", "E", "F", "G"},

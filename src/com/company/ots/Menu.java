@@ -1,6 +1,10 @@
 package com.company.ots;
 
+import java.util.List;
 import java.util.Scanner;
+
+import static com.company.ots.SeatingPlan.intialiseSeatingPlan;
+import static com.company.ots.Show.listShows;
 
 class Menu {
 
@@ -18,7 +22,7 @@ class Menu {
                 myAccount(customer);
                 break;
             case 2:
-                System.out.println("Upcoming shows");
+                listShows(customer);
                 break;
             case 3:
                 System.out.println("Thanks for visiting, see You again soon!");
@@ -46,6 +50,25 @@ class Menu {
             case 3:
                 mainMenu(customer);
                 break;
+        }
+    }
+
+    static void showMenu(Customer customer, List<Show> shows) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("If you would like to learn more about a play, please choose a number " +
+                "or press 0 to return to the main menu");
+
+        int chosenShow = scanner.nextInt() - 1;
+
+        if (chosenShow == 0) {
+            mainMenu(customer);
+        } else {
+            System.out.println(shows.get(chosenShow).getTitle());
+            System.out.println(shows.get(chosenShow).getDescription());
+            System.out.println(shows.get(chosenShow).getDate());
+
+            //TODO seatingplan etc
+            String[][] seatingPlan = intialiseSeatingPlan();
         }
     }
 }
