@@ -3,10 +3,17 @@ package com.company.ots;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.company.ots.Customer.register;
 import static com.company.ots.SeatingPlan.intialiseSeatingPlan;
 import static com.company.ots.Show.listShows;
 
 class Menu {
+    static void welcomeMenu() {
+        System.out.println("Welcome to the Online Ticket System! Please create an account!");
+        Customer customer = register();
+        System.out.println("Cheerio, please login now");
+        customer.login(customer);
+    }
 
     static void mainMenu(Customer customer) {
         Scanner scanner = new Scanner(System.in);
@@ -53,22 +60,43 @@ class Menu {
         }
     }
 
-    static void showMenu(Customer customer, List<Show> shows) {
+    static void listShowMenu(Customer customer, List<Show> shows) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("If you would like to learn more about a play, please choose a number " +
-                "or press 0 to return to the main menu");
+                "or press 99 to return to the main menu"); //TODO handle the 99 thing  better
 
         int chosenShow = scanner.nextInt() - 1;
 
-        if (chosenShow == 0) {
-            mainMenu(customer);
-        } else {
+        if (chosenShow < shows.size()){
             System.out.println(shows.get(chosenShow).getTitle());
             System.out.println(shows.get(chosenShow).getDescription());
             System.out.println(shows.get(chosenShow).getDate());
+        } else {
+            mainMenu(customer);
+        }
+        showMenu(customer, shows);
+    }
 
-            //TODO seatingplan etc
-            String[][] seatingPlan = intialiseSeatingPlan();
+    private static void showMenu(Customer customer, List<Show> shows) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please choose from the following options");
+        System.out.println("1) See seating plan for this show");
+        System.out.println("2) Back to list of shows");
+        System.out.println("3) Back to main menu");
+
+        int choosenOption = scanner.nextInt();
+
+        switch (choosenOption) {
+            case 1:
+                intialiseSeatingPlan();
+                //TODO continue from here
+                break;
+            case 2:
+                listShows(customer);
+                break;
+            case 3:
+                mainMenu(customer);
+                break;
         }
     }
 }

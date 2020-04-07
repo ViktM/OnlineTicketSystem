@@ -2,10 +2,9 @@ package com.company.ots;
 
 import java.util.*;
 
-import static com.company.ots.Menu.showMenu;
+import static com.company.ots.Menu.listShowMenu;
 
 class Show {
-    private static Customer customer;
     private String title;
     private String description;
     private Date date;
@@ -14,10 +13,6 @@ class Show {
         this.title = title;
         this.description = description;
         this.date = date;
-    }
-
-    public static Customer getCustomer() {
-        return customer;
     }
 
     String getTitle() {
@@ -33,10 +28,10 @@ class Show {
     }
 
     private static List<Show> shows(){
-        Show show1 = new Show("1) Harry Potter and the Cursed child", "Showstuff", new Date(2020, Calendar.JUNE, 5));
-        Show show2 = new Show("2) Aladdin", "Showstuff", new Date(2020, Calendar.JUNE, 6));
-        Show show3 = new Show("3) Alice in wondeland", "Showstuff", new Date(2020, Calendar.JUNE, 7));
-        Show show4 = new Show("4) The Lion King", "Showstuff", new Date(2020, Calendar.JUNE, 8));
+        Show show1 = new Show("1) Harry Potter and the Cursed Child", "It turns out Harry Potter, now a grown man with a wife and kids, sucks at parenting", new Date(2020, Calendar.JUNE, 5));
+        Show show2 = new Show("2) Aladdin", "Love is in the air when the paths of a beautiful princess and a charming thief cross", new Date(2020, Calendar.JUNE, 6));
+        Show show3 = new Show("3) Alice in Wonderland", "A little girl gets lost in a wonderland", new Date(2020, Calendar.JUNE, 7));
+        Show show4 = new Show("4) The Lion King", "Animals going about their business in the jungle", new Date(2020, Calendar.JUNE, 8));
         List<Show> shows = new ArrayList<>();
         shows.add(show1);
         shows.add(show2);
@@ -53,6 +48,6 @@ class Show {
             System.out.println(shows.get(listSize).getTitle());
             listSize++;
         }
-        showMenu(customer, shows());
+        listShowMenu(customer, shows());
     }
 }

@@ -54,7 +54,7 @@ class Customer {
         password = scanner.nextLine();
         System.out.println("Please enter your address");
         address = scanner.nextLine();
-        System.out.println("Welcome " + firstName + "!");
+        System.out.println("Welcome to OTS " + firstName + "!");
 
         return new Customer(firstName, lastName, email, password, address);
     }
@@ -73,7 +73,7 @@ class Customer {
         } else {
             System.out.println(
                     "Your credentials were invalid or not found in our system. Please try again or register");
-            register();
+            login(customer); //TODO option to re-register if they are idiots
         }
 
         mainMenu(customer);
@@ -214,10 +214,10 @@ class Customer {
         System.out.println("Password: ********"); //TODO show password on request
         System.out.println("Address: " + customer.getAddress());
 
-        System.out.println("Press 1 to return to My account");
+        System.out.println("Press 0 to return to My account");
 
         int backToMyAccount = scanner.nextInt();
-        if (backToMyAccount == 1) {
+        if (backToMyAccount == 0) {
             myAccount(customer);
         } else {
             myAccount(customer); //TODO handle this user journey
