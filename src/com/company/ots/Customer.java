@@ -142,13 +142,13 @@ class Customer {
                 editLastName(customer);
                 break;
             case 3:
-                System.out.println("email");
+                editEmail(customer);
                 break;
             case 4:
-                System.out.println("password");
+                editPassword(customer);
                 break;
             case 5:
-                System.out.println("address");
+                editAddress(customer);
                 break;
             case 6:
                 myAccount(customer);
@@ -156,9 +156,63 @@ class Customer {
         }
     }
 
+    private void editAddress(Customer customer) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Your current last name is: " + customer.getAddress());
+        System.out.println("Please enter your new address:");
+
+        String newAddress = scanner.nextLine();
+
+        Customer newCustomer = new Customer(
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getEmail(),
+                customer.getPassword(),
+                newAddress);
+
+        System.out.println("Your address has been edited!");
+        myAccount(newCustomer);
+    }
+
+    private void editPassword(Customer customer) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Your current password is: " + customer.getPassword());
+        System.out.println("Please enter your new password:");
+
+        String newPassword = scanner.nextLine();
+
+        Customer newCustomer = new Customer(
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getEmail(),
+                newPassword,
+                customer.getAddress());
+
+        System.out.println("Your password has been edited!");
+        myAccount(newCustomer);
+    }
+
+    private void editEmail(Customer customer) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Your current email is: " + customer.getEmail());
+        System.out.println("Please enter your new email:");
+
+        String newEmail = scanner.nextLine();
+
+        Customer newCustomer = new Customer(
+                customer.getFirstName(),
+                customer.getLastName(),
+                newEmail,
+                customer.getPassword(),
+                customer.getAddress());
+
+        System.out.println("Your email has been edited!");
+        myAccount(newCustomer);
+    }
+
     private void editLastName(Customer customer) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Your current last name is: " + customer.getFirstName());
+        System.out.println("Your current last name is: " + customer.getLastName());
         System.out.println("Please enter your new last name:");
 
         String newLastName = scanner.nextLine();
