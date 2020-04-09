@@ -3,7 +3,7 @@ package com.company.ots;
 import java.util.Scanner;
 
 import static com.company.ots.Menu.mainMenu;
-import static com.company.ots.Menu.myAccount;
+import static com.company.ots.Menu.myAccountMenu;
 
 class Customer {
     private String firstName;
@@ -109,7 +109,7 @@ class Customer {
                 editAddress(customer);
                 break;
             case 6:
-                myAccount(customer);
+                myAccountMenu(customer);
                 break;
         }
     }
@@ -129,7 +129,7 @@ class Customer {
                 newAddress);
 
         System.out.println("Your address has been edited!");
-        myAccount(newCustomer);
+        myAccountMenu(newCustomer);
     }
 
     private void editPassword(Customer customer) {
@@ -147,7 +147,7 @@ class Customer {
                 customer.getAddress());
 
         System.out.println("Your password has been edited!");
-        myAccount(newCustomer);
+        myAccountMenu(newCustomer);
     }
 
     private void editEmail(Customer customer) {
@@ -165,7 +165,7 @@ class Customer {
                 customer.getAddress());
 
         System.out.println("Your email has been edited!");
-        myAccount(newCustomer);
+        myAccountMenu(newCustomer);
     }
 
     private void editLastName(Customer customer) {
@@ -183,7 +183,7 @@ class Customer {
                 customer.getAddress());
 
         System.out.println("Your last name has been edited!");
-        myAccount(newCustomer);
+        myAccountMenu(newCustomer);
     }
 
     private void editFirstName(Customer customer) {
@@ -201,7 +201,7 @@ class Customer {
                 customer.getAddress());
 
         System.out.println("Your first name has been edited!");
-        myAccount(newCustomer);
+        myAccountMenu(newCustomer);
     }
 
 
@@ -218,9 +218,9 @@ class Customer {
 
         int backToMyAccount = scanner.nextInt();
         if (backToMyAccount == 0) {
-            myAccount(customer);
+            myAccountMenu(customer);
         } else {
-            myAccount(customer); //TODO handle this user journey
+            myAccountMenu(customer); //TODO handle this user journey
         }
     }
 }

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import static com.company.ots.Customer.register;
-import static com.company.ots.SeatingPlan.intialiseSeatingPlan;
 import static com.company.ots.Show.listsEachShows;
+import static com.company.ots.Venue.initialiseSeatingPlan;
 
 class Menu {
     static void welcomeMenu() {
@@ -26,7 +26,7 @@ class Menu {
 
         switch (mainMenuChoice) {
             case 1:
-                myAccount(customer);
+                myAccountMenu(customer);
                 break;
             case 2:
                 listsEachShows(customer);
@@ -37,7 +37,7 @@ class Menu {
         }
     }
 
-    static void myAccount(Customer customer) {
+    static void myAccountMenu(Customer customer) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(customer.getFirstName() + "'s account");
         System.out.println("Please choose from the following options");
@@ -67,7 +67,7 @@ class Menu {
 
         int chosenShow = scanner.nextInt() - 1;
 
-        if (chosenShow < shows.size()){
+        if (chosenShow < shows.size()) {
             System.out.println(shows.get(chosenShow).getTitle());
             System.out.println(shows.get(chosenShow).getDescription());
             System.out.println(shows.get(chosenShow).getDate());
@@ -88,7 +88,7 @@ class Menu {
 
         switch (choosenOption) {
             case 1:
-                intialiseSeatingPlan();
+                initialiseSeatingPlan(customer);
                 //TODO continue from here
                 break;
             case 2:
@@ -98,5 +98,60 @@ class Menu {
                 mainMenu(customer);
                 break;
         }
+    }
+
+    static void seatingPlanMenu(Customer customer, Venue seatingPlan) {
+        Scanner scanner = new Scanner(System.in);
+        seatingPlan.print();
+
+        System.out.println("Please choose from the following options");
+        System.out.println("1) Select seats for this show");
+        System.out.println("2) Back to list of shows");
+
+        int chosenOption = scanner.nextInt();
+
+        switch (chosenOption) {
+            case 1:
+                selectSeatsMenu(seatingPlan, scanner);
+                break;
+            case 2:
+                listsEachShows(customer);
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    private static void selectSeatsMenu(Venue seatingPlan, Scanner scanner) {
+        System.out.println("Hi, you can choose up to 5 seats.\n" +
+                "Please enter the number of seats you'd like to purchase");
+        int numberOfTickets = scanner.nextInt();
+        int i = 0;
+        while (numberOfTickets > i) {
+            System.out.println("Please choose seat");
+            chooseSeat(seatingPlan);
+            i++;
+        }
+        System.out.println("Cheerio"); //TODO remove later
+    }
+
+    private static void chooseSeat(Venue seatingPlan) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter the number of row you would like to sit in:");
+        int row = scanner.nextInt();
+
+
+        System.out.println("Please enter the letter of the seat you would ike to choose:");
+
+        Row aRow = seatingPlan.getRow(row);
+        String columnLetter = "";
+        while (columnLetter.isEmpty()) {
+            columnLetter = scanner.nextLine();
+        }
+        Seat seat = aRow.getSeat(columnLetter);
+        seat.setState(SeatState.HOLD);
+
+        seatingPlan.print();
     }
 }

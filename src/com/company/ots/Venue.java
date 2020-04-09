@@ -4,6 +4,8 @@ package com.company.ots;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.company.ots.Menu.seatingPlanMenu;
+
 public class Venue {
     private Map<Integer, Row> rows = new HashMap<>();
 
@@ -26,5 +28,19 @@ public class Venue {
 
     public void print() {
         rows.forEach(Row::print);
+    }
+
+    static Venue initialiseSeatingPlan(Customer customer) {
+        String[][] seatingPlan = {
+                {"A", "B", "C", "D", "E", "F", "G"},
+                {"A", "B", "C", "D", "E", "F", "G"},
+                {"A", "B", "C", "D", "E", "F", "G"},
+                {"A", "B", "C", "D", "E", "F", "G"},
+                {"A", "B", "C", "D", "E", "F", "G"}
+        };
+
+        Venue venue = new Venue(seatingPlan);
+        seatingPlanMenu(customer, venue);
+        return venue;
     }
 }
