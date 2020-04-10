@@ -52,10 +52,45 @@ class Menu {
                 customer.viewDetails(customer);
                 break;
             case 2:
-                customer.editDetails(customer);
+                editDetails(customer);
                 break;
             case 3:
                 mainMenu(customer);
+                break;
+        }
+    }
+
+    static void editDetails(Customer customer) { //TODO move to menu
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Edit details");
+        System.out.println("Please choose from the following options");
+        System.out.println("1) Change my first name");
+        System.out.println("2) Change my last name");
+        System.out.println("3) Change my email");
+        System.out.println("4) Change my password");
+        System.out.println("5) Change my Address");
+        System.out.println("6) Back to my account");
+
+        int editDetailsChoice = scanner.nextInt();
+
+        switch (editDetailsChoice) {
+            case 1:
+                customer.editFirstName(customer);
+                break;
+            case 2:
+                customer.editLastName(customer);
+                break;
+            case 3:
+                customer.editEmail(customer);
+                break;
+            case 4:
+                customer.editPassword(customer);
+                break;
+            case 5:
+                customer.editAddress(customer);
+                break;
+            case 6:
+                myAccountMenu(customer);
                 break;
         }
     }
@@ -112,7 +147,7 @@ class Menu {
 
         switch (chosenOption) {
             case 1:
-                selectSeatsMenu(seatingPlan, scanner);
+                selectSeatsMenu(customer, seatingPlan);
                 break;
             case 2:
                 listsEachShows(customer);
@@ -122,7 +157,8 @@ class Menu {
         }
     }
 
-    private static void selectSeatsMenu(Venue seatingPlan, Scanner scanner) {
+    private static void selectSeatsMenu(Customer customer, Venue seatingPlan) {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Hi, you can choose up to 5 seats.\n" +
                 "Please enter the number of seats you'd like to purchase");
         int numberOfTickets = scanner.nextInt();
@@ -132,7 +168,26 @@ class Menu {
             chooseSeat(seatingPlan);
             i++;
         }
-        System.out.println("Cheerio"); //TODO remove later
+        paymentMenu(customer, seatingPlan);
+    }
+
+    private static void paymentMenu(Customer customer, Venue seatingPlan) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please choose from the following options");
+        System.out.println("1) Buy tickets");
+        System.out.println("2) Cancel tickets, and back to main menu");
+
+        int chosenOption = scanner.nextInt();
+
+        switch (chosenOption){
+            case 1:
+                System.out.println("buying tickets");
+                break;
+            case 2:
+                mainMenu(customer);
+                break;
+        }
+
     }
 
     private static void chooseSeat(Venue seatingPlan) {

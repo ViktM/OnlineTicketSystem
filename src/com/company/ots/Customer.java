@@ -5,14 +5,14 @@ import java.util.Scanner;
 import static com.company.ots.Menu.mainMenu;
 import static com.company.ots.Menu.myAccountMenu;
 
-class Customer {
+public class Customer {
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String address;
 
-    private Customer(String firstName, String lastName, String email, String password, String address) {
+    public Customer(String firstName, String lastName, String email, String password, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -20,20 +20,44 @@ class Customer {
         this.address = address;
     }
 
-    String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
-    private String getLastName() {
+
+    public String getLastName() {
         return lastName;
     }
-    private String getEmail() {
+
+    public String getEmail() {
         return email;
     }
-    private String getPassword() {
+
+    public String getPassword() {
         return password;
     }
-    private String getAddress() {
+
+    public String getAddress() {
         return address;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     static Customer register() {
@@ -73,137 +97,76 @@ class Customer {
         } else {
             System.out.println(
                     "Your credentials were invalid or not found in our system. Please try again or register");
-            login(customer); //TODO option to re-register if they are idiots
+            login(customer); //TODO option to re-register
         }
 
         mainMenu(customer);
     }
 
-    void editDetails(Customer customer) { //TODO move to menu
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Edit details");
-        System.out.println("Please choose from the following options");
-        System.out.println("1) Change my first name");
-        System.out.println("2) Change my last name");
-        System.out.println("3) Change my email");
-        System.out.println("4) Change my password");
-        System.out.println("5) Change my Address");
-        System.out.println("6) Back to my account");
-
-        int editDetailsChoice = scanner.nextInt();
-
-        switch (editDetailsChoice) {
-            case 1:
-                editFirstName(customer);
-                break;
-            case 2:
-                editLastName(customer);
-                break;
-            case 3:
-                editEmail(customer);
-                break;
-            case 4:
-                editPassword(customer);
-                break;
-            case 5:
-                editAddress(customer);
-                break;
-            case 6:
-                myAccountMenu(customer);
-                break;
-        }
-    }
-
-    private void editAddress(Customer customer) {
+    void editAddress(Customer customer) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Your current last name is: " + customer.getAddress());
         System.out.println("Please enter your new address:");
 
         String newAddress = scanner.nextLine();
 
-        Customer newCustomer = new Customer(
-                customer.getFirstName(),
-                customer.getLastName(),
-                customer.getEmail(),
-                customer.getPassword(),
-                newAddress);
+        customer.setAddress(newAddress);
 
         System.out.println("Your address has been edited!");
-        myAccountMenu(newCustomer);
+        myAccountMenu(customer);
     }
 
-    private void editPassword(Customer customer) {
+    void editPassword(Customer customer) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Your current password is: " + customer.getPassword());
         System.out.println("Please enter your new password:");
 
         String newPassword = scanner.nextLine();
 
-        Customer newCustomer = new Customer(
-                customer.getFirstName(),
-                customer.getLastName(),
-                customer.getEmail(),
-                newPassword,
-                customer.getAddress());
+        customer.setPassword(newPassword);
 
         System.out.println("Your password has been edited!");
-        myAccountMenu(newCustomer);
+        myAccountMenu(customer);
     }
 
-    private void editEmail(Customer customer) {
+    void editEmail(Customer customer) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Your current email is: " + customer.getEmail());
         System.out.println("Please enter your new email:");
 
         String newEmail = scanner.nextLine();
 
-        Customer newCustomer = new Customer(
-                customer.getFirstName(),
-                customer.getLastName(),
-                newEmail,
-                customer.getPassword(),
-                customer.getAddress());
+        customer.setEmail(newEmail);
 
         System.out.println("Your email has been edited!");
-        myAccountMenu(newCustomer);
+        myAccountMenu(customer);
     }
 
-    private void editLastName(Customer customer) {
+    void editLastName(Customer customer) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Your current last name is: " + customer.getLastName());
         System.out.println("Please enter your new last name:");
 
         String newLastName = scanner.nextLine();
 
-        Customer newCustomer = new Customer(
-                customer.getFirstName(),
-                newLastName,
-                customer.getEmail(),
-                customer.getPassword(),
-                customer.getAddress());
+        customer.setLastName(newLastName);
 
         System.out.println("Your last name has been edited!");
-        myAccountMenu(newCustomer);
+        myAccountMenu(customer);
     }
 
-    private void editFirstName(Customer customer) {
+    void editFirstName(Customer customer) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Your current first name is: " + customer.getFirstName());
         System.out.println("Please enter your new first name:");
 
         String newFirstName = scanner.next();
 
-        Customer newCustomer = new Customer(
-                newFirstName,
-                customer.getLastName(),
-                customer.getEmail(),
-                customer.getPassword(),
-                customer.getAddress());
+        customer.setFirstName(newFirstName);
 
         System.out.println("Your first name has been edited!");
-        myAccountMenu(newCustomer);
+        myAccountMenu(customer);
     }
-
 
     void viewDetails(Customer customer) {
         Scanner scanner = new Scanner(System.in);
